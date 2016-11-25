@@ -8,6 +8,7 @@ class Agent extends CI_Controller {
 		parent::__construct();
         $this->load->helper('url');
         $this->load->library('session');
+        $this->load->helper('array');
 	}
 
 	function Index($pg = 0) {
@@ -36,45 +37,25 @@ class Agent extends CI_Controller {
     //fungsi lama -----------------
     function agent_web($pg = 1){
 
-        $this->load->model('agent_model');
-        $shopList = $this->agent_model->list_shop($pg);
-        $data['shopList'] = $shopList;
-        
+        $this->load->model('table_model');
+        //for table example
+        $data['title_table'] = 'Summary Warung';
+        $data['vari']  = $this->table_model->table_variabel(1);
+        $data['width'] = $this->table_model->table_width(1);
+        //$data['content'] = $this->tabel_model->table_content();
+        $this->load->vars($data);
 
         $this->load->view('agent/page_head');
         $this->load->view('agent/header');
         $this->load->view('agent/left_sidebar');
-        
-        //isi web
-        switch ($pg) {
-            case 1:
-                $page = 'welcome';
-                break;
-            case 2:
-                $page = 'user_registration';
-                break;
-            case 3:
-                $page = 'view_user';
-                break;
-            case 4:
-                $page = 'statistic_user';
-                break;
-            case 5:
-                $page = 'customer_statistic';
-                break;
-            case 6:
-                $page = 'customer_form';
-                $data['warung'] = $this->agent_model->get_idWarung();
-                break;
-            case 7:
-                $page = 'barcode_generator';
-                break;
-            default:
-                $page = 'welcome';
-        }
-        $this->load->vars($data);
-        $this->load->view('contents/'.$page);
+        $this->load->view('agent/page_wrapper');
 
+        //content
+        $this->load->view('contents/table');
+        //$this->load->view('contents/group_map');
+        //$this->load->view('contents/form_shop');
+
+        $this->load->view('agent/page_wrapper_end');
         $this->load->view('agent/page_end2');
     }
 
