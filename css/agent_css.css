@@ -1,0 +1,16 @@
+/*sidebar navigation*/
+#sidebar {
+    width: 240px;
+    height: 100%;
+    position: fixed;
+    background: #32323a;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    color: white;
+}
+
+#sidebar ul li {
+    position: relative;
+}
