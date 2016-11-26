@@ -15,8 +15,8 @@
                         <span>Shop Management</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="<?php echo base_url()?>index.php/agent/agent_web/3">Shop List</a></li>
-                        <li><a href="#">Shop Registration</a></li>
+                        <li><a href="#">Shop List</a></li>
+                        <li><a href="<?php echo base_url()?>index.php/agent/page_navigation/3">Shop Registration</a></li>
                         <li><a href="#">Shop Details</a></li>
                     </ul>
                 </li>
@@ -27,7 +27,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="#">Customer List</a></li>
-                        <li><a href="#">Customer Registration</a></li>
+                        <li><a href="<?php echo base_url()?>index.php/agent/page_navigation/6">Customer Registration</a></li>
                         <li><a href="#">Print barcode</a></li>
                     </ul>
                 </li>
