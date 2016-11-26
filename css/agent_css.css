@@ -1,16 +1,14 @@
-/*sidebar navigation*/
-#sidebar {
-    width: 240px;
-    height: 100%;
-    position: fixed;
-    background: #32323a;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    color: white;
+.confirm_button {
+    padding-left: 70%;
 }
 
-#sidebar ul li {
-    position: relative;
+.input_text {
+    width: 300%;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.rt_rw {
+    width: 50%;
+    margin-left: 4px;
 }
