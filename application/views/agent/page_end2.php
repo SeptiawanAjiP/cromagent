@@ -1,5 +1,6 @@
 </section>
-<!-- Placed js at the end of the document so the pages load faster -->
+<!-- Placed js at the end of the document so the pages load faster 
+ page end untuk map-->
 
 <!--Core js-->
 <script src="<?php echo base_url()?>js/jquery.js"></script>
@@ -8,6 +9,24 @@
 <script src="<?php echo base_url()?>js/jquery.scrollTo.min.js"></script>>
 <script src="<?php echo base_url()?>js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="<?php echo base_url()?>js/jquery.nicescroll.js"></script>
+
+<script src="<?php echo base_url()?>js/bootstrap-switch.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url()?>js/fuelux/js/spinner.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url()?>js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+<script src="<?php echo base_url()?>js/jquery-tags-input/jquery.tagsinput.js"></script>
+
+<script src="<?php echo base_url()?>js/select2/select2.js"></script>
+<script src="<?php echo base_url()?>js/select-init.js"></script>
+
 
 <!--dynamic table-->
 <script type="text/javascript" language="javascript" src="<?php echo base_url()?>js/advanced-datatable/js/jquery.dataTables.js"></script>
@@ -21,74 +40,12 @@
 <script src="<?php echo base_url()?>js/mini-upload-form/assets/js/jquery.iframe-transport.js"></script>
 <script src="<?php echo base_url()?>js/mini-upload-form/assets/js/jquery.fileupload.js"></script>
 
-<!--Google Map-->
-<script>
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-
-//get current location
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('gmap-list'), { center: {lat: -34.397, lng: 150.644},zoom: 6});
-    var infoWindow = new google.maps.InfoWindow({map: map});
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            document.getElementById('latitude').innerHTML = Object.values(pos);
-            
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-      'Error: The Geolocation service failed.' :
-      'Error: Your browser doesn\'t support geolocation.');
-}      
-</script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry&v=3.7&key=AIzaSyASRaAEI4rEQWLHvhPxCvBm-2_n1Hy5IpM&callback=initMap">
-</script>
-
 <!-- Our main JS file -->
 <script src="<?php echo base_url()?>js/mini-upload-form/assets/js/script.js"></script>
 
 <!--common script init for all pages-->
 <script src="<?php echo base_url()?>js/scripts.js"></script>
 
-<script>
-    $(function ()
-    {
-        $("#wizard").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft"
-        });
-
-        $("#wizard-vertical").steps({
-            headerTag: "h2",
-            bodyTag: "section",
-            transitionEffect: "slideLeft",
-            stepsOrientation: "vertical"
-        });
-    });
-</script>
 <script type="text/javascript">
 function noMenu() {
   return false;
@@ -97,5 +54,35 @@ $('body').bind('copy paste',function(e) {
    e.preventDefault(); return false; 
 });
 </script>
+
+<!-- google-map -->
+<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7&key=AIzaSyDQFjRggMlnBZO62jcu0-awkKaSiA50kho&libraries=places"></script>
+<!-- <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7&key=AIzaSyASRaAEI4rEQWLHvhPxCvBm-2_n1Hy5IpM"></script> -->
+
+<script type="text/javascript">
+    <?php 
+    $js_array = json_encode($LocsE);
+    echo "var js_array = ".$js_array.";\n";
+    ?>
+    var LocsE =[];
+    for (var i = js_array.length - 1; i >= 0; i--) {
+        LocsE.push(js_array[i]);
+    }
+    console.log(LocsE);
+</script>
+<script src="<?php echo base_url()?>js/google-map/maplace.js"></script>
+<script src="<?php echo base_url()?>js/google-map/points.js"></script>
+<script src="<?php echo base_url()?>js/mini-upload-form/assets/js/script.js"></script>
+<script>
+    //ul list example
+    new Maplace({
+        locations: LocsE,
+        map_div: '#gmap-list',
+        controls_type: '',
+        controls_title: ''
+    }).Load();
+</script>
+
+
 </body>
 </html>
