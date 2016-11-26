@@ -17,7 +17,32 @@ class Agent_model extends CI_Model {
 		$Q = $this->db->query($SQL);
 		return $Q->result_array();
 	}
+	
+	function groupMap(){
+		$SQL = 'SELECT gps_lat as lat, gps_lng as lon, nama_warung as title, alamat_detil, id_warung
+				FROM warung
+				WHERE id_agen = '.$this->session->userdata('idAgent');
+		$Q = $this->db->query($SQL);
+		$Qnew = $Q->result_array();
+		for ($i=0; $i < count($Qnew); $i++) { 
+			$Qnew[$i]['html'] = '<h3>'. $Qnew[$i]['title'] .'</h3>
+								 <p>'. $Qnew[$i]['alamat_detil'] .'</p>
+								 <a href="'. base_url() .'index.php/agent/singleShop/'. $Qnew[$i]['id_warung'] .'"> Detail </a>';
+		}
+		return $Qnew;
+	}
 
+	function shopDetail($idWarung){
+		$SQL = 'SELECT gps_lat as lat, gps_lng as lon, nama_warung as title, alamat_detil
+				FROM warung
+				WHERE id_agen = '.$this->session->userdata('idAgent').' AND id_warung = '.$idWarung;
+		$Q = $this->db->query($SQL);
+		$Qnew = $Q->result_array();
+		$Qnew[0]['html'] = '<h3>'. $Qnew[0]['title'] .'</h3>
+						     <p>'. $Qnew[0]['alamat_detil'] .'</p>';
+		return $Qnew;
+	}
+	
 	function new_shop(){
 		//generate id
 		$sqlID = "SELECT MAX(idWarung) AS newID FROM warung";
