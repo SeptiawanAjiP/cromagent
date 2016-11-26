@@ -16,7 +16,7 @@ class Agent extends CI_Controller {
         $this->session->set_userdata('notice', "");
         $this->load->view('agent/page_head');
         $this->load->view('contents/login');
-        $this->load->view('agent/page_end2');
+        $this->load->view('agent/page_end1');
 	}
 
     function login(){
@@ -34,7 +34,47 @@ class Agent extends CI_Controller {
         $this->load->view('agent/logout');
     }
     
+    function dashboard(){
+        $this->load->model('agent_model');
+        $user = $this->agent_model->groupMap();
+        $data['LocsE'] = $user;
+        $this->load->vars($data);
+
+        $this->load->view('agent/page_head');
+        $this->load->view('agent/header');
+        $this->load->view('agent/left_sidebar');
+        $this->load->view('agent/page_wrapper');
+
+        $this->load->view('contents/group_map');
+
+        $this->load->view('agent/page_wrapper_end');
+        $this->load->view('agent/page_end2');
+    }
+
+    function singleShop($idWarung){
+        $this->load->model('agent_model');
+        $user = $this->agent_model->shopDetail($idWarung);
+        $data['LocsE'] = $user;
+        $this->load->vars($data);
+
+        $this->load->view('agent/page_head');
+        $this->load->view('agent/header');
+        $this->load->view('agent/left_sidebar');
+        $this->load->view('agent/page_wrapper');
+
+        $this->load->view('contents/group_map');
+
+        $this->load->view('agent/page_wrapper_end');
+        $this->load->view('agent/page_end2');
+    }
+
     function page_navigation($pg = 1){
+
+        $this->load->model('agent_model');
+        $user = $this->agent_model->groupMap();
+        $data['LocsE'] = $user;
+        $this->load->vars($data);
+
         $this->load->view('agent/page_head');
         $this->load->view('agent/header');
         $this->load->view('agent/left_sidebar');
@@ -43,6 +83,7 @@ class Agent extends CI_Controller {
         switch ($pg) {
             case 1:
                 //dashboard
+                $page = 'group_map';
                 break;
             case 2:
                 //shop list
@@ -68,7 +109,8 @@ class Agent extends CI_Controller {
                 //dashboard
                 break;
             case 9:
-                //dashboard
+                //ticket request
+                $page = 'form_ticket';
                 break;
             case 10:
                 //dashboard
