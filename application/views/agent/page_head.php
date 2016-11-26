@@ -30,6 +30,8 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url()?>css/style.css" rel="stylesheet">
     <link href="<?php echo base_url()?>css/style-responsive.css" rel="stylesheet"/>
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/agent_css.css">
 </head>
 <body>
 <!-- <body oncontextmenu="return noMenu();" id="bodyPage"> -->
