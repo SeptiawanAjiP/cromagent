@@ -12,7 +12,7 @@ class Agent_model extends CI_Model {
 		$SQL = '
 			SELECT nama
 			FROM pegawai 
-			WHERE nip = '. $id .' AND password = "'. $pass . '" AND status = "agent"';
+			WHERE id_pegawai = '. $id .' AND password = "'. $pass . '" AND kategori = "1"';
 
 		$Q = $this->db->query($SQL);
 		return $Q->result_array();
