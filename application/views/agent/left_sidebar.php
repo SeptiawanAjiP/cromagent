@@ -4,7 +4,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a href="<?php echo base_url()?>index.php/agent/dashboard">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
