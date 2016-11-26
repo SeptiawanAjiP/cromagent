@@ -33,6 +33,56 @@ class Agent extends CI_Controller {
     function logout(){
         $this->load->view('agent/logout');
     }
+    
+    function page_navigation($pg = 1){
+        $this->load->view('agent/page_head');
+        $this->load->view('agent/header');
+        $this->load->view('agent/left_sidebar');
+        $this->load->view('agent/page_wrapper');
+        $page = 'welcome';
+        switch ($pg) {
+            case 1:
+                //dashboard
+                break;
+            case 2:
+                //shop list
+                break;
+            case 3:
+                //shop registration
+                $page = 'form_shop';
+                break;
+            case 4:
+                //dashboard
+                break;
+            case 5:
+                //dashboard
+                break;
+            case 6:
+                //customer registration
+                $page = 'form_customer';
+                break;
+            case 7:
+                //dashboard
+                break;
+            case 8:
+                //dashboard
+                break;
+            case 9:
+                //dashboard
+                break;
+            case 10:
+                //dashboard
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        $this->load->view('contents/'.$page);
+
+        $this->load->view('agent/page_wrapper_end');
+        $this->load->view('agent/page_end2');
+    }
 
     //fungsi lama -----------------
     function agent_web($pg = 1){
@@ -53,7 +103,6 @@ class Agent extends CI_Controller {
         //content
         $this->load->view('contents/table');
         //$this->load->view('contents/group_map');
-        //$this->load->view('contents/form_shop');
 
         $this->load->view('agent/page_wrapper_end');
         $this->load->view('agent/page_end2');
